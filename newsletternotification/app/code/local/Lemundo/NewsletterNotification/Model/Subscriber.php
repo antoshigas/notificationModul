@@ -8,37 +8,7 @@ class Lemundo_NewsletterNotification_Model_Subscriber extends Mage_Newsletter_Mo
      */
     public function sendConfirmationRequestEmail()
     {
-        if (!empty(Mage::getStoreConfig('lemundo_newsletter_notification/notification/confirmation'))) {
-            return $this;
-        }
-        
-        if ($this->getImportMode()) {
-            return $this;
-        }
-
-        if(!Mage::getStoreConfig(self::XML_PATH_CONFIRM_EMAIL_TEMPLATE)
-           || !Mage::getStoreConfig(self::XML_PATH_CONFIRM_EMAIL_IDENTITY)
-        )  {
-            return $this;
-        }
-
-        $translate = Mage::getSingleton('core/translate');
-        /* @var $translate Mage_Core_Model_Translate */
-        $translate->setTranslateInline(false);
-
-        $email = Mage::getModel('core/email_template');
-
-        $email->sendTransactional(
-            Mage::getStoreConfig(self::XML_PATH_CONFIRM_EMAIL_TEMPLATE),
-            Mage::getStoreConfig(self::XML_PATH_CONFIRM_EMAIL_IDENTITY),
-            $this->getEmail(),
-            $this->getName(),
-            array('subscriber'=>$this)
-        );
-
-        $translate->setTranslateInline(true);
-
-        return $this;
+        $this->allEmailsConfig('confirmation', self::XML_PATH_CONFIRM_EMAIL_TEMPLATE, self::XML_PATH_CONFIRM_EMAIL_IDENTITY);
     }
 
     /**
@@ -48,37 +18,7 @@ class Lemundo_NewsletterNotification_Model_Subscriber extends Mage_Newsletter_Mo
      */
     public function sendConfirmationSuccessEmail()
     {
-        if (!empty(Mage::getStoreConfig('lemundo_newsletter_notification/notification/success'))) {
-            return $this;
-        }
-
-        if ($this->getImportMode()) {
-            return $this;
-        }
-
-        if(!Mage::getStoreConfig(self::XML_PATH_SUCCESS_EMAIL_TEMPLATE)
-           || !Mage::getStoreConfig(self::XML_PATH_SUCCESS_EMAIL_IDENTITY)
-        ) {
-            return $this;
-        }
-
-        $translate = Mage::getSingleton('core/translate');
-        /* @var $translate Mage_Core_Model_Translate */
-        $translate->setTranslateInline(false);
-
-        $email = Mage::getModel('core/email_template');
-
-        $email->sendTransactional(
-            Mage::getStoreConfig(self::XML_PATH_SUCCESS_EMAIL_TEMPLATE),
-            Mage::getStoreConfig(self::XML_PATH_SUCCESS_EMAIL_IDENTITY),
-            $this->getEmail(),
-            $this->getName(),
-            array('subscriber'=>$this)
-        );
-
-        $translate->setTranslateInline(true);
-
-        return $this;
+        $this->allEmailsConfig('success', self::XML_PATH_SUCCESS_EMAIL_TEMPLATE, self::XML_PATH_SUCCESS_EMAIL_IDENTITY);
     }
 
     /**
@@ -88,15 +28,24 @@ class Lemundo_NewsletterNotification_Model_Subscriber extends Mage_Newsletter_Mo
      */
     public function sendUnsubscriptionEmail()
     {
-        if (!empty(Mage::getStoreConfig('lemundo_newsletter_notification/notification/unsubscription'))) {
+        $this->allEmailsConfig('unsubscription', self::XML_PATH_UNSUBSCRIBE_EMAIL_TEMPLATE, self::XML_PATH_UNSUBSCRIBE_EMAIL_IDENTITY);
+    }
+
+    /**
+     * Code optimizer
+     *
+     * @return Mage_Newsletter_Model_Subscriber
+     */
+    private function allEmailsConfig($subscriptionConfig, $firstStoreConfig, $secondStoreConfig) {
+        if (!empty(Mage::getStoreConfig('lemundo_newsletter_notification/notification/' . $subscriptionConfig))) {
             return $this;
         }
 
         if ($this->getImportMode()) {
             return $this;
         }
-        if(!Mage::getStoreConfig(self::XML_PATH_UNSUBSCRIBE_EMAIL_TEMPLATE)
-           || !Mage::getStoreConfig(self::XML_PATH_UNSUBSCRIBE_EMAIL_IDENTITY)
+        if(!Mage::getStoreConfig($firstStoreConfig)
+           || !Mage::getStoreConfig($secondStoreConfig)
         ) {
             return $this;
         }
@@ -108,8 +57,8 @@ class Lemundo_NewsletterNotification_Model_Subscriber extends Mage_Newsletter_Mo
         $email = Mage::getModel('core/email_template');
 
         $email->sendTransactional(
-            Mage::getStoreConfig(self::XML_PATH_UNSUBSCRIBE_EMAIL_TEMPLATE),
-            Mage::getStoreConfig(self::XML_PATH_UNSUBSCRIBE_EMAIL_IDENTITY),
+            Mage::getStoreConfig($firstStoreConfig),
+            Mage::getStoreConfig($secondStoreConfig),
             $this->getEmail(),
             $this->getName(),
             array('subscriber'=>$this)
