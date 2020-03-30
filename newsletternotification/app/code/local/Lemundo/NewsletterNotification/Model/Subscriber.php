@@ -4,7 +4,6 @@ class Lemundo_NewsletterNotification_Model_Subscriber extends Mage_Newsletter_Mo
         /**
      * Sends out confirmation email
      *
-     * @return Mage_Newsletter_Model_Subscriber
      */
     public function sendConfirmationRequestEmail()
     {
@@ -14,7 +13,6 @@ class Lemundo_NewsletterNotification_Model_Subscriber extends Mage_Newsletter_Mo
     /**
      * Sends out confirmation success email
      *
-     * @return Mage_Newsletter_Model_Subscriber
      */
     public function sendConfirmationSuccessEmail()
     {
@@ -24,7 +22,6 @@ class Lemundo_NewsletterNotification_Model_Subscriber extends Mage_Newsletter_Mo
     /**
      * Sends out unsubsciption email
      *
-     * @return Mage_Newsletter_Model_Subscriber
      */
     public function sendUnsubscriptionEmail()
     {
