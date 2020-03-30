@@ -1,7 +1,7 @@
 <?php
 
 class Lemundo_NewsletterNotification_Model_Subscriber extends Mage_Newsletter_Model_Subscriber {
-        /**
+     /**
      * Sends out confirmation email
      *
      * @return Mage_Newsletter_Model_Subscriber
@@ -37,16 +37,7 @@ class Lemundo_NewsletterNotification_Model_Subscriber extends Mage_Newsletter_Mo
      * @return Mage_Newsletter_Model_Subscriber
      */
     private function allEmailsConfig($subscriptionConfig, $firstStoreConfig, $secondStoreConfig) {
-        if (!empty(Mage::getStoreConfig('lemundo_newsletter_notification/notification/' . $subscriptionConfig))) {
-            return $this;
-        }
-
-        if ($this->getImportMode()) {
-            return $this;
-        }
-        if(!Mage::getStoreConfig($firstStoreConfig)
-           || !Mage::getStoreConfig($secondStoreConfig)
-        ) {
+        if (!empty(Mage::getStoreConfig('lemundo_newsletter_notification/notification/' . $subscriptionConfig)) || $this->getImportMode() || !Mage::getStoreConfig($firstStoreConfig) || !Mage::getStoreConfig($secondStoreConfig)) {
             return $this;
         }
 
