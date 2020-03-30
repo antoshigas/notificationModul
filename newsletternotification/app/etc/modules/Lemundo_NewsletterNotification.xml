@@ -1,0 +1,9 @@
+<?xml version='1.0'?>
+<config>
+    <modules>
+        <Lemundo_NewsletterNotification>
+            <active>true</active> 
+            <codePool>local</codePool> 
+        </Lemundo_NewsletterNotification>
+    </modules>
+</config>

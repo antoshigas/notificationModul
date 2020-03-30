@@ -1,0 +1,15 @@
+{
+    "name": "lemundo/newsletterNotification",
+    "type": "magento-module",
+    "license": "OSL-3.0",
+    "description": "Extension to disable notifications before/after subscribe/unsubscribe newsletter",
+    "authors":[
+        {
+            "name":"Anton Kurnickij",
+            "email":"a.kurnickij@lemundo.de"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

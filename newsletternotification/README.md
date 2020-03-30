@@ -1,0 +1,1 @@
+Extension to disable notifications before/after subscribe/unsubscribe newsletter

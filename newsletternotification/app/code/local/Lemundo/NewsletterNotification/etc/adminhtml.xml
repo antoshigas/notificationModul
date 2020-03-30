@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                     <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <lemundo_newsletter_notification translate="title" module="newsletter_notification">
+                                        <title>Lemundo Newsletter Notification</title>
+                                    </lemundo_newsletter_notification>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

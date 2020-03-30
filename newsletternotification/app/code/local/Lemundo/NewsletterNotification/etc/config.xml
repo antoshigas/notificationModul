@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Lemundo_NewsletterNotification>
+            <version>1.0.0</version>
+        </Lemundo_NewsletterNotification>
+    </modules>
+    <global>
+		<models>
+			<newsletter>
+				<rewrite>
+					<subscriber>Lemundo_NewsletterNotification_Model_Subscriber</subscriber>
+				</rewrite>
+			</newsletter>
+		</models>
+	</global>
+    <default>
+        <lemundo_newsletter_notification>
+            <notification>
+                <confirmation>1</confirmation>
+                <success>1</success>
+                <unsubscription>1</unsubscription>
+            </notification>
+        </lemundo_newsletter_notification>
+    </default>
+</config>
